@@ -1,0 +1,158 @@
+<!doctype html>
+<!--
+  GitHub Pages serves this for any path that has no file — which is every
+  invite link, since each one has its own code: polycule.wobblynoodles.com/invite/<code>.
+
+  On a phone with Polycule installed and the domain verified, Android opens
+  the app before this page is ever fetched. This page is for everyone else:
+  no app yet, a desktop browser, or a link opened inside an app that insists
+  on its own in-app browser.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Polycule</title>
+  <style>
+    :root {
+      --cream: #FFF8F0;
+      --card: #FFFBF7;
+      --rose: #E91E8C;
+      --rose-dark: #C2185B;
+      --ink: #3E2723;
+      --muted: #795548;
+      --line: #F3D9E4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: var(--cream);
+      color: var(--ink);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    h1 { font-size: 1.5rem; margin: 12px 0 8px; }
+    p { margin: 0 0 16px; color: var(--muted); }
+    .flower { width: 56px; height: 56px; }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      margin: 12px 0 0;
+      border: 0;
+      border-radius: 999px;
+      background: var(--rose);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button:hover { background: var(--rose-dark); }
+    .button.secondary {
+      background: transparent;
+      color: var(--rose-dark);
+      border: 1.5px solid var(--rose);
+    }
+    .code {
+      display: block;
+      margin: 8px 0 4px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px dashed var(--rose);
+      font: 600 0.95rem/1.4 ui-monospace, "SF Mono", Menlo, monospace;
+      word-break: break-all;
+      color: var(--ink);
+    }
+    .small { font-size: 0.875rem; margin-top: 20px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="flower" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 36 C32 46 32 52 32 60" stroke="#388E3C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M32 50 C24 44 18 46 16 50 C22 54 28 54 32 50Z" fill="#66BB6A"/>
+      <path d="M32 46 C40 40 46 42 48 46 C42 50 36 50 32 46Z" fill="#66BB6A"/>
+      <path d="M32 38 C20 28 14 20 20 12 C25 6 31 10 32 15 C33 10 39 6 44 12 C50 20 44 28 32 38Z" fill="#E53935"/>
+    </svg>
+
+    <!-- An invite link -->
+    <section id="invite" hidden>
+      <h1>You've been invited to a polycule</h1>
+      <p>Polycule is a cozy shared space for you and the people in your polycule.</p>
+
+      <a id="open-app" class="button" href="#">Open in Polycule</a>
+      <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.polycule.app">Get Polycule on Google Play</a>
+
+      <p class="small">
+        Already have the app and the button didn't work? Open Polycule, tap
+        <strong>Join with a code</strong>, and enter:
+      </p>
+      <span id="code" class="code"></span>
+      <button id="copy" class="button secondary" type="button">Copy code</button>
+      <p class="small">Invite codes work for 7 days.</p>
+    </section>
+
+    <!-- Anything else that doesn't exist -->
+    <section id="missing" hidden>
+      <h1>Nothing here</h1>
+      <p>This page doesn't exist.</p>
+      <a class="button" href="/">Go to Polycule</a>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      // /invite/<code>, with or without a trailing slash. Codes are kept to
+      // letters, digits and dashes, so nothing from the address bar can turn
+      // into markup on this page.
+      var match = location.pathname.match(/^\/invite\/([A-Za-z0-9-]{4,64})\/?$/);
+
+      if (!match) {
+        document.getElementById("missing").hidden = false;
+        return;
+      }
+
+      var code = match[1];
+      document.getElementById("invite").hidden = false;
+      document.getElementById("code").textContent = code;
+
+      // On Android, an intent: URL opens the app directly if it's installed
+      // — even when Android hasn't verified the domain — and otherwise falls
+      // back to the Play Store. Elsewhere, the button goes to the Play Store.
+      var store = "https://play.google.com/store/apps/details?id=com.polycule.app";
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      document.getElementById("open-app").href = isAndroid
+        ? "intent://polycule.wobblynoodles.com/invite/" + code +
+          "#Intent;scheme=https;package=com.polycule.app;" +
+          "S.browser_fallback_url=" + encodeURIComponent(store) + ";end"
+        : store;
+
+      var copy = document.getElementById("copy");
+      copy.addEventListener("click", function () {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(code).then(function () {
+          copy.textContent = "Copied";
+          setTimeout(function () { copy.textContent = "Copy code"; }, 2000);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
