@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polycule</title>
+  <meta name="description" content="A cozy shared space for you and the people in your polycule.">
+  <style>
+    :root {
+      --cream: #FFF8F0;
+      --card: #FFFBF7;
+      --rose: #E91E8C;
+      --rose-dark: #C2185B;
+      --ink: #3E2723;
+      --muted: #795548;
+      --line: #F3D9E4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: var(--cream);
+      color: var(--ink);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    h1 { font-size: 1.75rem; margin: 12px 0 8px; }
+    p { margin: 0 0 16px; color: var(--muted); }
+    .flower { width: 64px; height: 64px; }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      margin: 20px 0 0;
+      border-radius: 999px;
+      background: var(--rose);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .button:hover { background: var(--rose-dark); }
+    footer { margin-top: 24px; font-size: 0.875rem; }
+    footer a { color: var(--rose-dark); }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="flower" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 36 C32 46 32 52 32 60" stroke="#388E3C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M32 50 C24 44 18 46 16 50 C22 54 28 54 32 50Z" fill="#66BB6A"/>
+      <path d="M32 46 C40 40 46 42 48 46 C42 50 36 50 32 46Z" fill="#66BB6A"/>
+      <path d="M32 38 C20 28 14 20 20 12 C25 6 31 10 32 15 C33 10 39 6 44 12 C50 20 44 28 32 38Z" fill="#E53935"/>
+    </svg>
+
+    <h1>Polycule</h1>
+    <p>A cozy shared space for you and the people in your polycule.</p>
+    <p>See how everyone connects, tend a garden together, answer the day's
+      question around the fire, and play games with each other.</p>
+
+    <a class="button" href="https://play.google.com/store/apps/details?id=com.polycule.app">Get Polycule on Google Play</a>
+
+    <footer>
+      <a href="/delete-account/">Delete your account</a>
+    </footer>
+  </main>
+</body>
+</html>
