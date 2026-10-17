@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.polycule.app",
+      "sha256_cert_fingerprints": [
+        "39:30:82:29:72:C1:E2:E8:9D:10:DC:C5:2B:31:55:1D:48:EB:0C:44:87:E4:4D:47:38:03:6C:7F:77:70:38:8D",
+        "86:E7:58:AF:A9:E3:16:41:4F:1C:C9:E4:EA:9E:1D:6A:DD:92:B7:4C:EE:28:75:95:86:AF:A5:66:3D:C5:B3:5B"
+      ]
+    }
+  }
+]
