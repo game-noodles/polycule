@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Polycule</title>
+<meta name="description" content="Questions, problems or requests about Polycule: send us a message.">
+<style>
+
+  :root {
+    --bg: #FFF8F0;          /* Cream, the app's background */
+    --card: #FFFBF7;        /* WarmWhite */
+    --text: #3E2723;        /* DarkBrown */
+    --muted: #795548;       /* SoftBrown */
+    --rose: #C2185B;        /* Rose40 */
+    --rose-soft: #FDE8E7;   /* Settings' rose panel */
+    --sage-soft: #EBF1E1;   /* Settings' sage panel */
+    --line: #EADCD2;
+    --field: #FFFFFF;
+    --error: #B3261E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1F1816;
+      --card: #2A211E;
+      --text: #F5ECE6;
+      --muted: #C9B5AA;
+      --rose: #F48FB1;
+      --rose-soft: #3A2228;
+      --sage-soft: #24301F;
+      --line: #3E322D;
+      --field: #1F1816;
+      --error: #F2B8B5;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  .app { color: var(--rose); font-weight: 700; letter-spacing: .02em; margin: 0 0 4px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 12px; }
+  h2 { font-size: 1.15rem; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .lead { color: var(--muted); margin-bottom: 28px; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  section.rose { background: var(--rose-soft); border-color: transparent; }
+  section.sage { background: var(--sage-soft); border-color: transparent; }
+  section > :last-child { margin-bottom: 0; }
+  ul { margin: 0 0 12px; padding-left: 1.3em; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--rose); }
+  a { color: var(--rose); }
+  .small { font-size: .9rem; color: var(--muted); }
+  footer { margin-top: 32px; font-size: .9rem; color: var(--muted); }
+
+  /* ── The form ─────────────────────────────────────────────────────────── */
+  .field { margin-bottom: 16px; }
+  label { display: block; font-weight: 600; margin-bottom: 4px; }
+  .optional { font-weight: 400; color: var(--muted); }
+  input, select, textarea {
+    width: 100%;
+    font: inherit;
+    color: var(--text);
+    background: var(--field);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+  textarea { min-height: 180px; resize: vertical; }
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--rose);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+  .hint { font-size: .9rem; color: var(--muted); margin-top: 4px; }
+  .counter { text-align: right; }
+  .counter.over { color: var(--error); }
+
+  /* Kept off screen rather than display:none, which some bots skip. */
+  .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  button {
+    font: inherit;
+    font-weight: 600;
+    background: var(--rose);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 24px;
+    cursor: pointer;
+  }
+  @media (prefers-color-scheme: dark) { button { color: #1F1816; } }
+  button:disabled { opacity: .6; cursor: default; }
+
+  .status { margin-top: 16px; }
+  .status.error { color: var(--error); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <p class="app">Polycule</p>
+  <h1>Contact us</h1>
+  <p class="lead">Questions, problems, ideas or requests about your data: send us a
+    message and we’ll reply by email, usually within a few days. Polycule is made by
+    one person, so please be patient with us.</p>
+
+  <section class="rose">
+    <h2>Before you write</h2>
+    <ul>
+      <li><strong>Someone in danger?</strong> Polycule isn’t an emergency service.
+        Call your local emergency number, such as 911.</li>
+      <li><strong>Reporting someone in the app?</strong> Use <strong>Report</strong>
+        in their <strong>…</strong> menu on the People tab. It reaches us with the
+        details we need, and they’re never told who reported them.</li>
+      <li><strong>Deleting your account?</strong> The quickest way is in the app:
+        Settings → Delete account. <a href="../delete-account/">More about
+        deleting</a>.</li>
+    </ul>
+  </section>
+
+  <section id="form-section">
+    <form id="contact" novalidate>
+      <div class="field">
+        <label for="name">Your name <span class="optional">(optional)</span></label>
+        <input id="name" name="name" type="text" maxlength="100" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" maxlength="254" required
+               autocomplete="email" inputmode="email">
+        <p class="hint">We’ll reply to this address. For anything about your account,
+          use the address you sign in to Polycule with.</p>
+      </div>
+
+      <div class="field">
+        <label for="topic">What’s it about?</label>
+        <select id="topic" name="topic" required>
+          <option value="question">A question about Polycule</option>
+          <option value="account">My account or signing in</option>
+          <option value="premium">Premium, blossoms or a purchase</option>
+          <option value="bug">Something isn’t working</option>
+          <option value="privacy">Privacy, or a copy of my data</option>
+          <option value="delete">Deleting my account</option>
+          <option value="not_in_app">I’ve been added to a polycule but don’t use the app</option>
+          <option value="safety">Safety, or a decision about my account</option>
+          <option value="idea">An idea or feedback</option>
+          <option value="other">Something else</option>
+        </select>
+        <p class="hint" id="topic-hint" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" required maxlength="5000"></textarea>
+        <p class="hint counter" id="counter">0 / 5000</p>
+      </div>
+
+      <div class="trap" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button type="submit" id="send">Send message</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <noscript>
+      <p>This form needs JavaScript. You can email us instead at
+        <a href="mailto:support@wobblynoodles.com">support@wobblynoodles.com</a>.</p>
+    </noscript>
+  </section>
+
+  <section class="sage" id="sent" hidden tabindex="-1">
+    <h2>Thanks, your message is on its way</h2>
+    <p>We’ll reply to <strong id="sent-to"></strong>. If you don’t hear back in a
+      week, check your spam folder, or email us directly at
+      <a href="mailto:support@wobblynoodles.com">support@wobblynoodles.com</a>.</p>
+  </section>
+
+  <section>
+    <h2>Email us instead</h2>
+    <p>You can always write to
+      <a href="mailto:support@wobblynoodles.com">support@wobblynoodles.com</a>.</p>
+    <p class="small">We use what you send only to answer you, and keep it for as long
+      as we need to help, no more than two years. See our
+      <a href="../privacy/">privacy policy</a>.</p>
+  </section>
+
+  <footer>
+    <p>Polycule is made by Wobbly Noodles.
+      <a href="../terms/">Terms of use</a> ·
+      <a href="../privacy/">Privacy policy</a> ·
+      <a href="../delete-account/">Delete your account</a></p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  // The contact-form Edge Function. Set this to your project's URL:
+  //   https://<project-ref>.supabase.co/functions/v1/contact-form
+  var ENDPOINT = "https://YOUR-PROJECT-REF.supabase.co/functions/v1/contact-form";
+  var SUPPORT = "support@wobblynoodles.com";
+
+  var form = document.getElementById("contact");
+  var send = document.getElementById("send");
+  var status = document.getElementById("status");
+  var message = document.getElementById("message");
+  var counter = document.getElementById("counter");
+  var topic = document.getElementById("topic");
+  var topicHint = document.getElementById("topic-hint");
+  var openedAt = Date.now();
+
+  var HINTS = {
+    privacy: "For a copy of your data, send this from your sign-in address. We’ll reply within 30 days.",
+    delete: "We only delete an account when the request comes from its sign-in address, so use that address above. We’ll confirm by email before deleting.",
+    not_in_app: "Tell us the polycule’s name and the name you were added under, and we’ll remove you.",
+    safety: "If someone may be in danger right now, call your local emergency number first.",
+    premium: "Payments and refunds are handled by Google Play. Include your Google Play order number (it starts with GPA.) if you have it."
+  };
+
+  function showHint() {
+    var hint = HINTS[topic.value];
+    topicHint.textContent = hint || "";
+    topicHint.hidden = !hint;
+  }
+
+  // ?topic=delete and the like, so other pages can link straight here.
+  var wanted = new URLSearchParams(location.search).get("topic");
+  if (wanted && topic.querySelector('option[value="' + wanted.replace(/[^a-z_]/g, "") + '"]')) {
+    topic.value = wanted;
+  }
+  showHint();
+  topic.addEventListener("change", showHint);
+
+  function updateCounter() {
+    var n = message.value.length;
+    counter.textContent = n + " / 5000";
+    counter.classList.toggle("over", n > 5000);
+  }
+  message.addEventListener("input", updateCounter);
+  updateCounter();
+
+  function fail(text) {
+    status.className = "status error";
+    status.textContent = text;
+  }
+
+  function looksLikeEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var email = form.email.value.trim();
+    var body = message.value.trim();
+
+    if (!looksLikeEmail(email)) {
+      fail("Please enter your email address, so we can reply.");
+      form.email.focus();
+      return;
+    }
+    if (body.length < 10) {
+      fail("Please write a little more, so we know how to help.");
+      message.focus();
+      return;
+    }
+    if (body.length > 5000) {
+      fail("That’s a bit long. Please keep it under 5000 characters.");
+      message.focus();
+      return;
+    }
+
+    send.disabled = true;
+    send.textContent = "Sending…";
+    status.className = "status";
+    status.textContent = "";
+
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name.value.trim(),
+        email: email,
+        topic: topic.value,
+        message: body,
+        website: form.website.value,
+        elapsed_ms: Date.now() - openedAt
+      })
+    })
+      .then(function (response) {
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          if (!response.ok) throw new Error(data.error || "");
+          return data;
+        });
+      })
+      .then(function () {
+        document.getElementById("sent-to").textContent = email;
+        document.getElementById("form-section").hidden = true;
+        var sent = document.getElementById("sent");
+        sent.hidden = false;
+        sent.focus();
+      })
+      .catch(function (error) {
+        send.disabled = false;
+        send.textContent = "Send message";
+        fail((error && error.message ? error.message + " " : "Your message couldn’t be sent. ") +
+          "You can email us at " + SUPPORT + " instead.");
+      });
+  });
+})();
+</script>
+</body>
+</html>
+
