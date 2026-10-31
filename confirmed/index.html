@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The address this page is opened with can carry sign-in details. Never
+     pass it on to another site, and keep the page out of search results. -->
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Email confirmed &#xB7; Polycule</title>
+<meta name="description" content="Confirming your email address for Polycule.">
+<script>
+  // Runs before anything else on the page. Supabase sends people here with
+  // their sign-in details in the address (after the #, or as ?code=). This
+  // page never uses them, so it reads what it needs to know (did it work?)
+  // and wipes them from the address bar and the browser history straight
+  // away, before anything could be bookmarked, shared or screenshotted.
+  (function () {
+    var hash = new URLSearchParams(location.hash.replace(/^#/, ""));
+    var query = new URLSearchParams(location.search);
+    var pick = function (key) { return hash.get(key) || query.get(key) || ""; };
+
+    var outcome = "unknown";
+    var code = pick("error_code");
+    if (pick("error") || code) {
+      outcome = (code === "otp_expired" || pick("error") === "access_denied") ? "expired" : "error";
+    } else if (hash.get("access_token") || query.get("code") || pick("type") === "signup") {
+      outcome = "confirmed";
+    }
+    window.__confirmOutcome = outcome;
+
+    if (location.hash || location.search) {
+      history.replaceState(null, "", location.pathname);
+    }
+  })();
+</script>
+<style>
+
+  :root {
+    --bg: #FFF8F0;          /* Cream, the app's background */
+    --card: #FFFBF7;        /* WarmWhite */
+    --text: #3E2723;        /* DarkBrown */
+    --muted: #795548;       /* SoftBrown */
+    --rose: #C2185B;        /* Rose40 */
+    --rose-soft: #FDE8E7;   /* Settings' rose panel */
+    --sage-soft: #EBF1E1;   /* Settings' sage panel */
+    --line: #EADCD2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1F1816;
+      --card: #2A211E;
+      --text: #F5ECE6;
+      --muted: #C9B5AA;
+      --rose: #F48FB1;
+      --rose-soft: #3A2228;
+      --sage-soft: #24301F;
+      --line: #3E322D;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  .app { color: var(--rose); font-weight: 700; letter-spacing: .02em; margin: 0 0 4px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 12px; }
+  h2 { font-size: 1.15rem; margin: 0 0 8px; }
+  p { margin: 0 0 12px; }
+  .lead { color: var(--muted); margin-bottom: 28px; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  section.rose { background: var(--rose-soft); border-color: transparent; }
+  section.sage { background: var(--sage-soft); border-color: transparent; }
+  section > :last-child { margin-bottom: 0; }
+  ol { margin: 0 0 12px; padding-left: 1.3em; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--rose); }
+  a { color: var(--rose); }
+  .flower { font-size: 2.6rem; line-height: 1; margin: 0 0 12px; }
+  .small { font-size: .9rem; color: var(--muted); }
+  footer { margin-top: 32px; font-size: .9rem; color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <p class="app">Polycule</p>
+
+  <!-- Shown when the link worked. Also the page without JavaScript. -->
+  <div id="confirmed">
+    <p class="flower" aria-hidden="true">&#x1F338;</p>
+    <h1>Your email is confirmed</h1>
+    <p class="lead">Welcome to Polycule. Your account is ready.</p>
+    <section class="sage">
+      <h2>What&#x2019;s next</h2>
+      <ol>
+        <li>Go back to Polycule on your phone.</li>
+        <li>Sign in with your email and password.</li>
+        <li>Start a polycule, or join one with an invite code.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div id="expired" hidden>
+    <h1>This link has expired</h1>
+    <p class="lead">Confirmation links only work once, and only for a limited time.</p>
+    <section class="rose">
+      <h2>Already confirmed?</h2>
+      <p>If you tapped this link before, your email is already confirmed. Just sign in
+        to Polycule.</p>
+    </section>
+    <section>
+      <h2>Need a new link?</h2>
+      <ol>
+        <li>Open Polycule and sign in with your email and password.</li>
+        <li>Tap <strong>Send a new confirmation email</strong>.</li>
+        <li>Tap the link in the new email.</li>
+      </ol>
+    </section>
+  </div>
+
+  <div id="error" hidden>
+    <h1>We couldn&#x2019;t confirm your email</h1>
+    <p class="lead">Something went wrong with this link.</p>
+    <section>
+      <ol>
+        <li>Open Polycule and try signing in. If your email is already confirmed,
+          that&#x2019;s all you need to do.</li>
+        <li>If it isn&#x2019;t, tap <strong>Send a new confirmation email</strong> and use
+          the link in that one.</li>
+      </ol>
+      <p>Still stuck? <a href="../contact/?topic=account">Contact us</a>.</p>
+    </section>
+  </div>
+
+  <div id="unknown" hidden>
+    <h1>Confirming your email</h1>
+    <p class="lead">This page is where the link in Polycule&#x2019;s confirmation email
+      takes you.</p>
+    <section>
+      <p>If you&#x2019;ve just tapped that link, your email should be confirmed: go back to
+        Polycule and sign in. If the app says your email isn&#x2019;t confirmed, tap
+        <strong>Send a new confirmation email</strong>.</p>
+      <p>Still stuck? <a href="../contact/?topic=account">Contact us</a>.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>Polycule is made by Wobbly Noodles.
+      <a href="../">About Polycule</a> &#xB7;
+      <a href="../terms/">Terms of use</a> &#xB7;
+      <a href="../privacy/">Privacy policy</a> &#xB7;
+      <a href="../contact/">Contact</a></p>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var outcome = window.__confirmOutcome || "unknown";
+    if (outcome === "confirmed") return;
+    document.getElementById("confirmed").hidden = true;
+    document.getElementById(outcome).hidden = false;
+    var title = { expired: "Link expired", error: "Couldn\u2019t confirm", unknown: "Confirming your email" };
+    document.title = title[outcome] + " \u00b7 Polycule";
+  })();
+</script>
+</body>
+</html>
