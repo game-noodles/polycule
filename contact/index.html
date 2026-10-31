@@ -64,7 +64,7 @@
   .small { font-size: .9rem; color: var(--muted); }
   footer { margin-top: 32px; font-size: .9rem; color: var(--muted); }
 
-  /* ── The form ─────────────────────────────────────────────────────────── */
+  /* &#x2500;&#x2500; The form &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500; */
   .field { margin-bottom: 16px; }
   label { display: block; font-weight: 600; margin-bottom: 4px; }
   .optional { font-weight: 400; color: var(--muted); }
@@ -113,19 +113,19 @@
   <p class="app">Polycule</p>
   <h1>Contact us</h1>
   <p class="lead">Questions, problems, ideas or requests about your data: send us a
-    message and we’ll reply by email, usually within a few days. Polycule is made by
+    message and we&#x2019;ll reply by email, usually within a few days. Polycule is made by
     one person, so please be patient with us.</p>
 
   <section class="rose">
     <h2>Before you write</h2>
     <ul>
-      <li><strong>Someone in danger?</strong> Polycule isn’t an emergency service.
+      <li><strong>Someone in danger?</strong> Polycule isn&#x2019;t an emergency service.
         Call your local emergency number, such as 911.</li>
       <li><strong>Reporting someone in the app?</strong> Use <strong>Report</strong>
-        in their <strong>…</strong> menu on the People tab. It reaches us with the
-        details we need, and they’re never told who reported them.</li>
+        in their <strong>&#x2026;</strong> menu on the People tab. It reaches us with the
+        details we need, and they&#x2019;re never told who reported them.</li>
       <li><strong>Deleting your account?</strong> The quickest way is in the app:
-        Settings → Delete account. <a href="../delete-account/">More about
+        Settings &#x2192; Delete account. <a href="../delete-account/">More about
         deleting</a>.</li>
     </ul>
   </section>
@@ -141,20 +141,20 @@
         <label for="email">Your email</label>
         <input id="email" name="email" type="email" maxlength="254" required
                autocomplete="email" inputmode="email">
-        <p class="hint">We’ll reply to this address. For anything about your account,
+        <p class="hint">We&#x2019;ll reply to this address. For anything about your account,
           use the address you sign in to Polycule with.</p>
       </div>
 
       <div class="field">
-        <label for="topic">What’s it about?</label>
+        <label for="topic">What&#x2019;s it about?</label>
         <select id="topic" name="topic" required>
           <option value="question">A question about Polycule</option>
           <option value="account">My account or signing in</option>
           <option value="premium">Premium, blossoms or a purchase</option>
-          <option value="bug">Something isn’t working</option>
+          <option value="bug">Something isn&#x2019;t working</option>
           <option value="privacy">Privacy, or a copy of my data</option>
           <option value="delete">Deleting my account</option>
-          <option value="not_in_app">I’ve been added to a polycule but don’t use the app</option>
+          <option value="not_in_app">I&#x2019;ve been added to a polycule but don&#x2019;t use the app</option>
           <option value="safety">Safety, or a decision about my account</option>
           <option value="idea">An idea or feedback</option>
           <option value="other">Something else</option>
@@ -185,7 +185,7 @@
 
   <section class="sage" id="sent" hidden tabindex="-1">
     <h2>Thanks, your message is on its way</h2>
-    <p>We’ll reply to <strong id="sent-to"></strong>. If you don’t hear back in a
+    <p>We&#x2019;ll reply to <strong id="sent-to"></strong>. If you don&#x2019;t hear back in a
       week, check your spam folder, or email us directly at
       <a href="mailto:support@wobblynoodles.com">support@wobblynoodles.com</a>.</p>
   </section>
@@ -201,8 +201,8 @@
 
   <footer>
     <p>Polycule is made by Wobbly Noodles.
-      <a href="../terms/">Terms of use</a> ·
-      <a href="../privacy/">Privacy policy</a> ·
+      <a href="../terms/">Terms of use</a> &#xB7;
+      <a href="../privacy/">Privacy policy</a> &#xB7;
       <a href="../delete-account/">Delete your account</a></p>
   </footer>
 </main>
@@ -211,7 +211,7 @@
 (function () {
   // The contact-form Edge Function. Set this to your project's URL:
   //   https://<project-ref>.supabase.co/functions/v1/contact-form
-  var ENDPOINT = "https://YOUR-PROJECT-REF.supabase.co/functions/v1/contact-form";
+  var ENDPOINT = "https://wssplzyqrwdbfepybdzx.supabase.co/functions/v1/contact-form";
   var SUPPORT = "support@wobblynoodles.com";
 
   var form = document.getElementById("contact");
@@ -224,9 +224,9 @@
   var openedAt = Date.now();
 
   var HINTS = {
-    privacy: "For a copy of your data, send this from your sign-in address. We’ll reply within 30 days.",
-    delete: "We only delete an account when the request comes from its sign-in address, so use that address above. We’ll confirm by email before deleting.",
-    not_in_app: "Tell us the polycule’s name and the name you were added under, and we’ll remove you.",
+    privacy: "For a copy of your data, send this from your sign-in address. We\u2019ll reply within 30 days.",
+    delete: "We only delete an account when the request comes from its sign-in address, so use that address above. We\u2019ll confirm by email before deleting.",
+    not_in_app: "Tell us the polycule\u2019s name and the name you were added under, and we\u2019ll remove you.",
     safety: "If someone may be in danger right now, call your local emergency number first.",
     premium: "Payments and refunds are handled by Google Play. Include your Google Play order number (it starts with GPA.) if you have it."
   };
@@ -279,13 +279,13 @@
       return;
     }
     if (body.length > 5000) {
-      fail("That’s a bit long. Please keep it under 5000 characters.");
+      fail("That\u2019s a bit long. Please keep it under 5000 characters.");
       message.focus();
       return;
     }
 
     send.disabled = true;
-    send.textContent = "Sending…";
+    send.textContent = "Sending\u2026";
     status.className = "status";
     status.textContent = "";
 
@@ -303,7 +303,13 @@
     })
       .then(function (response) {
         return response.json().catch(function () { return {}; }).then(function (data) {
-          if (!response.ok) throw new Error(data.error || "");
+          if (!response.ok) {
+            // Only the function's own sentences are shown. Anything else
+            // (a network failure, a blocked request) gets the plain line below.
+            var problem = new Error(data.error || "");
+            problem.fromServer = true;
+            throw problem;
+          }
           return data;
         });
       })
@@ -317,7 +323,8 @@
       .catch(function (error) {
         send.disabled = false;
         send.textContent = "Send message";
-        fail((error && error.message ? error.message + " " : "Your message couldn’t be sent. ") +
+        var said = error && error.fromServer && error.message;
+        fail((said ? said + " " : "Your message couldn\u2019t be sent. ") +
           "You can email us at " + SUPPORT + " instead.");
       });
   });
@@ -325,4 +332,3 @@
 </script>
 </body>
 </html>
-
