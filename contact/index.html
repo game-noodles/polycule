@@ -113,7 +113,7 @@
   <p class="app">Polycule</p>
   <h1>Contact us</h1>
   <p class="lead">Questions, problems, ideas or requests about your data: send us a
-    message and we&#x2019;ll reply by email, usually within a few days. Polycule is made by
+    message and we&#x2019;ll reply by email as soon as we can. Polycule is made by
     one person, so please be patient with us.</p>
 
   <section class="rose">
@@ -185,8 +185,8 @@
 
   <section class="sage" id="sent" hidden tabindex="-1">
     <h2>Thanks, your message is on its way</h2>
-    <p>We&#x2019;ll reply to <strong id="sent-to"></strong>. If you don&#x2019;t hear back in a
-      week, check your spam folder, or email us directly at
+    <p>We&#x2019;ll reply to <strong id="sent-to"></strong>. If you haven&#x2019;t heard back in a
+      couple of weeks, check your spam folder, or email us directly at
       <a href="mailto:support@wobblynoodles.com">support@wobblynoodles.com</a>.</p>
   </section>
 
@@ -211,7 +211,7 @@
 (function () {
   // The contact-form Edge Function. Set this to your project's URL:
   //   https://<project-ref>.supabase.co/functions/v1/contact-form
-  var ENDPOINT = "https://wssplzyqrwdbfepybdzx.supabase.co/functions/v1/contact-form";
+  var ENDPOINT = "https://YOUR-PROJECT-REF.supabase.co/functions/v1/contact-form";
   var SUPPORT = "support@wobblynoodles.com";
 
   var form = document.getElementById("contact");
@@ -224,7 +224,7 @@
   var openedAt = Date.now();
 
   var HINTS = {
-    privacy: "For a copy of your data, send this from your sign-in address. We\u2019ll reply within 30 days.",
+    privacy: "For a copy of your data, send this from your sign-in address. We\u2019ll reply within 30 days (20 working days in New Zealand).",
     delete: "We only delete an account when the request comes from its sign-in address, so use that address above. We\u2019ll confirm by email before deleting.",
     not_in_app: "Tell us the polycule\u2019s name and the name you were added under, and we\u2019ll remove you.",
     safety: "If someone may be in danger right now, call your local emergency number first.",
